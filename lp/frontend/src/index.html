@@ -1,0 +1,83 @@
+<title>Sample Project</title>
+<link rel="stylesheet" type="text/css" href="./index.css">
+
+<h1>Project LP</h1>
+
+<section>
+  <h2>ICO</h2>
+
+  <p id="error" style="color: red;"></p>
+
+  <div>
+    Phase: <span id="ico_spc_phase"></span>
+  </div>
+  <div>
+    SPC left to buy: <span id="ico_spc_left"></span>
+    <br /><br />
+    *Rate of 5 SPC per 1 ETH
+  </div>
+
+  <form id="ico_spc_buy">
+    Buy SPC (enter ETH amount)
+    <input name="eth" value="0.1" autocomplete="off">
+    <button type="submit">Buy</button>
+  </form>
+</section>
+
+<section>
+  <h2>Pool</h2>
+  <div>**If transaction gives you an error of allowance try again, it takes a couple of secs to generate a block, just try again</div>
+
+  <form id="lp_deposit">
+    Deposit for LP tokens <br>
+    <input name="eth" value="0" autocomplete="off"> ETH<br>
+    <input name="spc" value="0" autocomplete="off"> SPC<br>
+    <button type="submit">Deposit</button>
+  </form>
+
+  <form id="lp_withdraw">
+    Withdraw from pool <br>
+    <button type="submit">Withdraw All</button>
+  </form>
+</section>
+
+<section>
+  <h2>Trade</h2>
+  <div>**If transaction gives you an error of allowance try again, it takes a couple of secs to generate a block, just try again</div>
+
+  <form id="swap">
+    Trade SPC for ETH or ETH for SPC<br><br />
+    <div>
+      <b>TRADE INFORMATION</b> <br />
+      Expected Amount: <b><span id="expectedAmount"></span></b> <br />
+      Actual Amount you will receive (due to slippage and 1% fee): <b><span id="actualAmount"></span></b> <br />
+      Slippage %: <b><span id="slippagePercentage"></span></b> <br />
+    </div>
+
+    <br>
+    <p id="slippageMessage" style="color: red;"></p><br />
+    Select your max slippage % tolerance:
+
+    <div id="select_insert"></div>
+
+      <script>
+        let html = '<select name="slippageTolerance" id="slippageTolerance">';
+        for(i=1; i<=100; i++) {
+          html += '<option value="' + i + '">' + i + '%</option>';
+        }
+        html += '</select>';
+
+        document.getElementById("select_insert").innerHTML = html;
+      </script>
+
+    <br /><br />
+
+    <input name="amount_in" value="0" autocomplete="off"> <span id="swap_in_label">ETH</span>
+    <small id="switcher" style="text-decoration: underline; cursor: pointer;">click to change ETH or SPC</small>
+    <br>
+    <span id="swap_out_label">0 SPC</span><br>
+    <button type="submit">Trade</button>
+  </form>
+</section>
+
+<script type="module" src="./index.js"></script>
